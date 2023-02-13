@@ -53,7 +53,7 @@ const model = {
         for (let i = 0; i < this.shipsCnt; i++) {
             const ship = this.ships[i];
             const index = ship.locations.indexOf(parseloca);
-            debugger;
+
             if (index >= 0) {
                 view.displayHit(parseloca);
                 view.displayMessage('명중하였습니다💥');
@@ -114,5 +114,21 @@ var controller = {
 }
 
 
+window.onload = handleFire;
 
-
+function handleFire() {
+    const fireForm = document.querySelector('.gameForm');
+    const fireBtn = document.querySelector('.fireBtn');
+    const fireInput = document.querySelector('.fireInput');
+    fireBtn.addEventListener('click', () => {
+        const fireValue = fireInput.value;
+        controller.progressGuess(fireValue);
+        fireInput.value = '';
+    });
+    fireForm.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter') {
+            e.preventDefault();
+            fireBtn.click();
+        }
+    })
+}
