@@ -12,7 +12,7 @@ body {
     height: 100vh;
 }
 
-.game_board {
+.gameBoard {
     background: url('img/board.jpg') no-repeat center center;
     background-size: contain;
     width: 100%;
@@ -21,7 +21,7 @@ body {
     position: relative;
 }
 
-.game_alert {
+.gameAlert {
     position: absolute;
     top: 3%;
     left: 21%;
@@ -48,7 +48,7 @@ body {
     border: 1px solid white;
 }
 
-.game_input {
+.gameInput {
     position: absolute;
     right: 22%;
     bottom: 6%;
