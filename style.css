@@ -44,9 +44,9 @@ body {
     height: 79%;
 }
 
-.td {
+/* .td {
     border: 1px solid white;
-}
+} */
 
 .gameInput {
     position: absolute;
@@ -87,4 +87,32 @@ button:hover {
 
 .miss {
     background: url('img/miss.png') no-repeat center center;
+}
+
+.gameResult {
+    position: absolute;
+    left: 14%;
+    width: 70%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-size: 50px;
+    padding: 20%;
+    visibility: hidden;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.replayBtn {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    color: white;
+}
+
+.visible {
+    z-index: 1;
+    visibility: visible;
+    opacity: 1;
 }
