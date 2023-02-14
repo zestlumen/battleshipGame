@@ -10,6 +10,10 @@ for (let i = 0; i < tableRow; i++) {
         const td = document.createElement('td');
         td.setAttribute('class', 'td');
         td.setAttribute('id', `${i}${j}`);
+        td.addEventListener('click', (e) => {
+            const guess = e.target.id;
+            controller.progressClickGuess(guess);
+        });
         // td.innerText = `${i}${j}`;
         tr.appendChild(td);
     }
@@ -25,19 +29,29 @@ const view = {
     },
     displayMiss: function (parseloca) {
         const cell = document.getElementById(parseloca);
-        cell.setAttribute('class', 'miss');
+        // cell.setAttribute('class', 'miss');
+        cell.classList.add('miss');
     },
     displayHit: function (parseloca) {
         const cell = document.getElementById(parseloca);
-        cell.setAttribute('class', 'hit');
+        // cell.setAttribute('class', 'hit');
+        cell.classList.add('hit');
     },
     displayResult: function (result) {
         const gameResult = document.querySelector('.gameResult');
         gameResult.innerHTML = result;
         gameResult.classList.add('visible');
+        gameResult.addEventListener('click', () => {
+            gameResult.classList.remove('visible');
+            const cells = document.querySelectorAll('.hit, .miss');
+            for (let i = 0; i < cells.length; i++) {
+                cells[i].classList.remove('hit') || cells[i].classList.remove('miss');
+            };
+            controller.replayGame();
+        });
     }
-}
 
+}
 
 const model = {
     ships: [
@@ -127,6 +141,15 @@ const model = {
 
 var controller = {
     guessCnt: 0,
+    progressClickGuess: function (guess) {
+        if (guess) {
+            this.guessCnt++;
+            const sunk = model.fire(guess);
+            if (sunk && model.sunkShip === model.shipsCnt) {
+                view.displayResult(`🚩승리! ${this.guessCnt}번 만에 모든 전함 격침 완료!!!`);
+            };
+        }
+    },
     progressGuess: function (guess) {
         const parseloca = this.parseGuess(guess);
         if (parseloca) {
@@ -155,20 +178,24 @@ var controller = {
             }
         }
         return null;
-        gameinput
+    },
+    replayGame: function () {
+        this.guessCnt = 0;
+        model.sunkShip = 0;
+        model.ships = [
+            { locations: ['0', '0', '0'], hits: ['', '', ''] },
+            { locations: ['0', '0', '0'], hits: ['', '', ''] },
+            { locations: ['0', '0', '0'], hits: ['', '', ''] },
+        ];
+        model.generateShipLocations();
+        handleFire();
     }
 }
-
 
 window.addEventListener("DOMContentLoaded", () => {
     model.generateShipLocations();
     handleFire();
 })
-
-// Window.addEventListner('DOMContentLoaded', function () {
-//     model.generateShipLocations();
-//     handleFire();
-// });
 
 function handleFire() {
     const fireForm = document.querySelector('.gameForm');
