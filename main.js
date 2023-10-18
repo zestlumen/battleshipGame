@@ -2,6 +2,7 @@ const gameBoard = document.querySelector('.gameBoard');
 const tableRow = 7;
 const tableData = 7;
 const table = document.createElement('table');
+let gue = '';
 table.setAttribute('class', 'table');
 
 for (let i = 0; i < tableRow; i++) {
@@ -115,9 +116,9 @@ const model = {
             if (index >= 0) {
                 view.displayHit(parseloca);
                 view.displayMessage('명중하였습니다💥');
-                ship.hits[index] = "hit";
+                ship.hits[index] = 'hit';
                 if (this.isSunk(ship)) {
-                    view.displayMessage("대단해! 전함을 부셔버렸어🔥");
+                    view.displayMessage('대단해! 전함을 부셔버렸어🔥');
                     this.sunkShip++;
                 }
                 return true;
@@ -130,7 +131,7 @@ const model = {
 
     isSunk: function (ship) {
         for (let i = 0; i < this.shipLocaCnt; i++) {
-            if (ship.hits[i] !== "hit") {
+            if (ship.hits[i] !== 'hit') {
                 return false;
             }
         }
@@ -192,7 +193,7 @@ var controller = {
     }
 }
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener('DOMContentLoaded', () => {
     model.generateShipLocations();
     handleFire();
 })

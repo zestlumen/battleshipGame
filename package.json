@@ -1,0 +1,24 @@
+{
+  "name": "battleshipgame",
+  "version": "1.0.0",
+  "description": "헤드퍼스트 참고 자바스크립트 전함 격투 게임",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zestlumen/battleshipGame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zestlumen/battleshipGame/issues"
+  },
+  "homepage": "https://zestlumen.github.io/battleshipGame/",
+  "devDependencies": {
+    "webpack": "^5.89.0"
+  }
+}
