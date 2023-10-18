@@ -2,25 +2,8 @@ const gameBoard = document.querySelector('.gameBoard');
 const tableRow = 7;
 const tableData = 7;
 const table = document.createElement('table');
-let gue = '';
 table.setAttribute('class', 'table');
-
-for (let i = 0; i < tableRow; i++) {
-    const tr = document.createElement('tr');
-    for (let j = 0; j < tableData; j++) {
-        const td = document.createElement('td');
-        td.setAttribute('class', 'td');
-        td.setAttribute('id', `${i}${j}`);
-        td.addEventListener('click', (e) => {
-            const guess = e.target.id;
-            controller.progressClickGuess(guess);
-        });
-        // td.innerText = `${i}${j}`;
-        tr.appendChild(td);
-    }
-    table.appendChild(tr);
-}
-gameBoard.appendChild(table);
+let guess = 0;
 
 
 const view = {
@@ -49,6 +32,8 @@ const view = {
                 cells[i].classList.remove('hit') || cells[i].classList.remove('miss');
             };
             controller.replayGame();
+            this.displayMessage('다시 도전해보자! 전함을 찾아서 격침~~!');
+
         });
     }
 
@@ -140,7 +125,7 @@ const model = {
 }
 
 
-var controller = {
+const controller = {
     guessCnt: 0,
     progressClickGuess: function (guess) {
         if (guess) {
@@ -194,9 +179,28 @@ var controller = {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    createGameBoard();
     model.generateShipLocations();
     handleFire();
 })
+
+function createGameBoard() {
+    for (let i = 0; i < tableRow; i++) {
+        const tr = document.createElement('tr');
+        for (let j = 0; j < tableData; j++) {
+            const td = document.createElement('td');
+            td.setAttribute('class', 'td');
+            td.setAttribute('id', `${i}${j}`);
+            td.addEventListener('click', (e) => {
+                const guess = e.target.id;
+                controller.progressClickGuess(guess);
+            });
+            tr.appendChild(td);
+        }
+        table.appendChild(tr);
+    }
+    gameBoard.appendChild(table);
+}
 
 function handleFire() {
     const fireForm = document.querySelector('.gameForm');
