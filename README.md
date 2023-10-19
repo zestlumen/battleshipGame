@@ -35,4 +35,6 @@
 모든 전함 처리 완료 - 게임 종료 화면(전함 격침 횟수 표시, 화면 클릭 시 게임 재실행)
 <img src="https://github.com/zestlumen/battleshipGame/assets/122693004/6f4d92ae-1625-48c8-8fb6-08942292257e"  />
 
+#### 참고자료
+Head First javaScropt Programming 책 참고
 
