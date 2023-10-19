@@ -1,5 +1,6 @@
 ## JavaScript로 만든 전함격투게임
-- HTML / CSS / JS
+### 바로가기 https://minibattleshipgame.netlify.app/
+- HTML/CSS/JS로 구현, Netlify로 배포
 - HTML에서는 최소한의 구조만 잡고 JS에서 요소 생성 및 행동 구현
 - 이중 for문을 활용해 td요소로 게임보드 생성 및 고유한 id를 부여로 명중/실패 구분
 - 배열의 indexOf() 메서드를 활용해 명중 여부 확인
